@@ -1,0 +1,25 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: couchdb
+  namespace: products
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: couchdb
+      version: "4.5.3"
+      sourceRef:
+        kind: HelmRepository
+        name: couchdb
+        namespace: products
+      interval: 5m
+  values:
+    clusterSize: 1
+    couchdbConfig:
+      couchdb:
+        max_document_size: 100000000 # bytes
+      chttpd:
+        max_http_request_size: 4294967296 # 4 GB
+    persistentVolume:
+      enabled: true

@@ -1,0 +1,8 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: products
+resources:
+  - namespace.yaml
+  # - ap1
+  # - ap2
+  - pg1
