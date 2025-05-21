@@ -16,6 +16,7 @@ spec:
       interval: 5m
   values:
     clusterSize: 1
+    nameOverride: couchdb-as4msh
     couchdbConfig:
       couchdb:
         max_document_size: 100000000 # bytes

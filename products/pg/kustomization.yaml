@@ -3,4 +3,3 @@ kind: Kustomization
 namespace: products
 resources:
   - pg-cluster.yaml
-  - mini-sealed-secrets.yaml

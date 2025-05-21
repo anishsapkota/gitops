@@ -1,0 +1,56 @@
+# apiVersion: postgresql.cnpg.io/v1
+# kind: Cluster
+# metadata:
+#   name: pg-cluster-bp-recovery
+#   namespace: products
+# spec:
+#   imageName: ghcr.io/cloudnative-pg/postgresql:17.0-34
+#   instances: 1
+#   storage:
+#     size: 25Gi
+
+#   backup:
+#     barmanObjectStore:
+#       destinationPath: "s3://dc1-database-backups"
+#       endpointURL: "http://minio.minio.svc.cluster.local:9000"
+#       serverName: "business-processor-pg-production"
+#       s3Credentials:
+#         accessKeyId:
+#           name: database-backup-aws-credentials
+#           key: accessKey
+#         secretAccessKey:
+#           name: database-backup-aws-credentials
+#           key: secretKey
+#       wal:
+#         compression: gzip
+#       data:
+#         compression: gzip
+
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres-cluster
+  namespace: products
+spec:
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.0-34
+  instances: 1
+
+  storage:
+    size: 1Gi
+
+  backup:
+    barmanObjectStore:
+      destinationPath: "s3://cnpg-backup"
+      endpointURL: "http://minio.minio.svc.cluster.local:9000"
+      s3Credentials:
+        accessKeyId:
+          name: database-backup-aws-credentials
+          key: accessKey
+        secretAccessKey:
+          name: database-backup-aws-credentials
+          key: secretKey
+      wal:
+        compression: gzip
+      data:
+        compression: gzip

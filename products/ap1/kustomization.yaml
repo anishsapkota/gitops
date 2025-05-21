@@ -20,7 +20,6 @@ patches:
       metadata:
         name: couchdb # Kustomize targets by base name before suffix
       spec:
-        releaseName: couchdb-api # Helm release name
         targetNamespace: products # Explicitly set target for clarity
         values:
           clusterSize: 1
